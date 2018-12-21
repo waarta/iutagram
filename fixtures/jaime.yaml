@@ -1,0 +1,5 @@
+App\Entity\Jaime:
+  jaime__{1..100}:
+    valeur: <boolean()>
+    photo: "@photo__*"
+    user: "@user__*"

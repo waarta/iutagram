@@ -1,0 +1,6 @@
+App\Entity\Photo:
+  photo__{1..100}:
+    url: <imageURL()>
+    date: <date_create()>
+    description: <realText()>
+    user: "@user__*"
