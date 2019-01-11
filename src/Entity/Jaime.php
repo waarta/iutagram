@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LikeRepository")
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass="App\Repository\JaimeRepository")
  */
 class Jaime
 {
@@ -22,7 +24,7 @@ class Jaime
     private $valeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Photo", inversedBy="likes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Photo", inversedBy="jaimes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $photo;
