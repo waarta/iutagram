@@ -4,14 +4,18 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get_jaime"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\JaimeRepository")
  */
 class Jaime
 {
     /**
+     * @Groups({"get_jaime","get_photo","get_user"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,17 +23,20 @@ class Jaime
     private $id;
 
     /**
+     * @Groups({"get_jaime","get_photo","get_user"})
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $valeur;
 
     /**
+     * @Groups({"get_jaime"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Photo", inversedBy="jaimes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $photo;
 
     /**
+     * @Groups({"get_jaime","get_photo"})
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="jaimes")
      * @ORM\JoinColumn(nullable=false)
      */

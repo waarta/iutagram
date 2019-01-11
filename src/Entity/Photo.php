@@ -6,14 +6,18 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get_photo"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
  */
 class Photo
 {
     /**
+     * @Groups({"get_photo","get_user","get_commentaire","get_jaime"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -21,32 +25,38 @@ class Photo
     private $id;
 
     /**
+     * @Groups({"get_photo","get_user","get_commentaire","get_jaime"})
      * @ORM\Column(type="string", length=2000)
      */
     private $url;
 
     /**
+     * @Groups({"get_photo","get_user","get_commentaire","get_jaime"})
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
+     * @Groups({"get_photo","get_user","get_commentaire","get_jaime"})
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $description;
 
     /**
+     * @Groups({"get_photo"})
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="photos")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
+     * @Groups({"get_photo"})
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="photo", orphanRemoval=true)
      */
     private $commentaires;
 
     /**
+     * @Groups({"get_photo","get_user"})
      * @ORM\OneToMany(targetEntity="App\Entity\Jaime", mappedBy="photo", orphanRemoval=true)
      */
     private $jaimes;

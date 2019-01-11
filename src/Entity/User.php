@@ -7,14 +7,22 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get_user"}},
+ *     collectionOperations={
+ *          "get"={"normalization_context"={"groups"={"get_users"}}},
+ *          "post"={"normalization_context"={"groups"={"post_user"}}}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
     /**
+     * @Groups({"get_users", "get_user","get_photo","get_commentaire","get_jaime"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -22,11 +30,13 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups({"get_users", "get_user","get_photo","get_commentaire","get_jaime"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
 
     /**
+     * @Groups({"get_users", "get_user"})
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -38,21 +48,25 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Groups({"get_users", "get_user"})
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
+     * @Groups({"get_users", "get_user"})
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
+     * @Groups({"get_users","get_user"})
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+     * @Groups({"get_user"})
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="user", orphanRemoval=true)
      */
     private $photos;
