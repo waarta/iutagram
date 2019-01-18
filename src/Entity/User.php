@@ -11,8 +11,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"={"get_user"}},
- *     collectionOperations={
+ *      accessControl="is_granted('ROLE_USER')",
+ *      normalizationContext={"groups"={"get_user"}},
+ *      collectionOperations={
  *          "get"={"normalization_context"={"groups"={"get_users"}}},
  *          "post"={"normalization_context"={"groups"={"post_user"}}}
  *     }

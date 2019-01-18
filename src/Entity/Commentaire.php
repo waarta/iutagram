@@ -8,7 +8,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"={"get_commentaire"}},
+ *      accessControl="is_granted('ROLE_USER')",
+ *      normalizationContext={"groups"={"get_commentaire"}},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\CommentaireRepository")
  */
