@@ -8,16 +8,16 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20181221130323 extends AbstractMigration
+final class Version20190118112034 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE commentaire ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE commentaire ADD CONSTRAINT FK_67F068BCA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_67F068BCA76ED395 ON commentaire (user_id)');
+        $this->addSql('CREATE TABLE follower (id INT AUTO_INCREMENT NOT NULL, follow_id INT NOT NULL, followed_id INT NOT NULL, INDEX IDX_B9D609468711D3BC (follow_id), INDEX IDX_B9D60946D956F010 (followed_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE follower ADD CONSTRAINT FK_B9D609468711D3BC FOREIGN KEY (follow_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE follower ADD CONSTRAINT FK_B9D60946D956F010 FOREIGN KEY (followed_id) REFERENCES user (id)');
     }
 
     public function down(Schema $schema) : void
@@ -25,8 +25,6 @@ final class Version20181221130323 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE commentaire DROP FOREIGN KEY FK_67F068BCA76ED395');
-        $this->addSql('DROP INDEX IDX_67F068BCA76ED395 ON commentaire');
-        $this->addSql('ALTER TABLE commentaire DROP user_id');
+        $this->addSql('DROP TABLE follower');
     }
 }

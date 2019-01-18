@@ -1,0 +1,4 @@
+App\Entity\Follower:
+  follower{1..100}:
+    Follow: "@user__*"
+    Followed: "@user__*"
