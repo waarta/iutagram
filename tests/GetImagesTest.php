@@ -6,10 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class GetImagesTest extends WebTestCase
 {
-    public function testSomething()
-    {
-        $this->assertTrue(true);
-    }
     public function test_api_returns_image_list()
     {
         $client = $this->createClient();
@@ -21,6 +17,7 @@ class GetImagesTest extends WebTestCase
             $client->getResponse()->headers->get('Content-Type'));
 
         $content = json_decode($client->getResponse()->getContent(), true);
+        //$this->assertTrue(true);
 
     }
 }

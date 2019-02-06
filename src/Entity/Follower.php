@@ -4,14 +4,18 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      accessControl="is_granted('ROLE_USER')",
+ *      normalizationContext={"groups"={"get_follower"}})
  * @ORM\Entity(repositoryClass="App\Repository\FollowerRepository")
  */
 class Follower
 {
     /**
+     * @Groups({"get_follower"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,12 +23,14 @@ class Follower
     private $id;
 
     /**
+     * @Groups({"get_follower"})
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="follow")
      * @ORM\JoinColumn(nullable=false)
      */
     private $follow;
 
     /**
+     * @Groups({"get_follower"})
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="followed")
      * @ORM\JoinColumn(nullable=false)
      */

@@ -83,11 +83,13 @@ class User implements UserInterface
     private $commentaires;
 
     /**
+     * @Groups({"get_user"})
      * @ORM\OneToMany(targetEntity="App\Entity\Follower", mappedBy="follow", orphanRemoval=true)
      */
     private $follow;
 
     /**
+     * @Groups({"get_user"})
      * @ORM\OneToMany(targetEntity="App\Entity\Follower", mappedBy="followed", orphanRemoval=true)
      */
     private $followed;
