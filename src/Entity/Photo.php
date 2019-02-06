@@ -10,7 +10,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *      accessControl="is_granted('ROLE_USER')",
  *      normalizationContext={"groups"={"get_photo"}}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
