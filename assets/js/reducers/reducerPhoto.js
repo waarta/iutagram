@@ -1,5 +1,4 @@
 import { GET_PHOTOS } from "../actions/actionPhoto";
-import { combineReducers } from "redux";
 
 const initialState = {
 	photos: []
@@ -14,4 +13,4 @@ const photos = (state = initialState, action) => {
 	}
 };
 
-export default combineReducers({ photos });
+export default photos;

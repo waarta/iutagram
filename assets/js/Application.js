@@ -1,14 +1,33 @@
 import React, { Component } from "react";
-import Miniature from "./components/Miniature";
 import FilActu from "./components/FilActu";
+import FormLogin from "./components/FormLogin";
+import { userLogout } from "./actions/actionUser";
+import { connect } from "react-redux";
 
-export default class Application extends Component {
+class Application extends Component {
 	render() {
-		return (
-			<div>
-				<h1>Foobar</h1>
-				<FilActu />
-			</div>
-		);
+		console.log(this.props);
+		if (this.props.user.jwt)
+			return (
+				<div>
+					<h1>IUTagram</h1>
+					<button onClick={() => this.props.dispatch(userLogout())}>
+						Log out
+					</button>
+					<FilActu />
+				</div>
+			);
+		else
+			return (
+				<div>
+					<h1>IUTagram</h1>
+					<FormLogin />
+				</div>
+			);
 	}
 }
+const mapStateToProps = state => ({
+	user: state.user
+});
+
+export default connect(mapStateToProps)(Application);
