@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import FilActu from "./components/FilActu";
 import FormLogin from "./components/FormLogin";
-import { userLogout } from "./actions/actionUser";
+import { userLogout, getInfosUser } from "./actions/actionUser";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Application extends Component {
+	componentDidMount() {
+		this.props.dispatch(getInfosUser(this.props.user.jwt.payload.id));
+	}
+
 	render() {
 		if (this.props.user.jwt)
 			return (

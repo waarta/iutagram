@@ -48,3 +48,20 @@ export const userLogout = () => async dispatch => {
 		dispatch({ type: USER_LOGOUT_ERROR, error });
 	}
 };
+
+export const GET_INFOS_USER = "GET_INFOS_USER";
+export const GET_INFOS_USER_ERROR = "GET_INFOS_USER_ERROR";
+export const getInfosUser = (id, jwt) => async dispatch => {
+	try {
+		const res = await fetch("/api/users/" + id, {
+			headers: {
+				Authorization: "Bearer " + jwt
+			}
+		});
+		const payload = await res.json();
+
+		dispatch({ type: GET_INFOS_USER, payload });
+	} catch (error) {
+		dispatch({ type: GET_INFOS_USER_ERROR, error });
+	}
+};

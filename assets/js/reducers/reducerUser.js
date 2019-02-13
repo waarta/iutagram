@@ -1,7 +1,8 @@
-import { USER_LOGIN, USER_LOGOUT } from "../actions/actionUser";
+import { USER_LOGIN, USER_LOGOUT, GET_INFOS_USER } from "../actions/actionUser";
 
 const initialState = {
-	jwt: ""
+	jwt: "",
+	infosUser: []
 };
 
 const user = (state = initialState, action) => {
@@ -10,6 +11,8 @@ const user = (state = initialState, action) => {
 			return { ...state, jwt: action.jwt };
 		case USER_LOGOUT:
 			return { ...state, jwt: null };
+		case GET_INFOS_USER:
+			return { ...state, infosUser: action.infosUser };
 		default:
 			return state;
 	}

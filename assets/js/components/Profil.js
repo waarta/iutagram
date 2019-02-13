@@ -7,7 +7,7 @@ class Profil extends Component {
 		return (
 			<div>
 				<h2>Profil</h2>
-				<Link to="/me">Home</Link>
+				<Link to="/">Home</Link>
 			</div>
 		);
 	}
