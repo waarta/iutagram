@@ -7,7 +7,9 @@ import { createLogger } from "redux-logger";
 import reducer from "./reducers";
 import thunk from "redux-thunk";
 import Application from "./Application";
-import { userLogin, USER_LOGIN } from "./actions/actionUser";
+import { USER_LOGIN } from "./actions/actionUser";
+import { BrowserRouter, Route } from "react-router-dom";
+import Profil from "./components/Profil";
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
@@ -27,11 +29,16 @@ if (localStorage.getItem("jwt")) {
 			jwt: token
 		});
 	}
-} else store.dispatch(userLogin("zprosacco", "user"));
+}
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Application />
+		<BrowserRouter>
+			<>
+				<Route exact path="/" render={() => <Application />} />
+				<Route exact path="/me" render={() => <Profil />} />
+			</>
+		</BrowserRouter>
 	</Provider>,
 	document.getElementById("app")
 );

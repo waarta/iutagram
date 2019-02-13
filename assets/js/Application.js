@@ -3,10 +3,10 @@ import FilActu from "./components/FilActu";
 import FormLogin from "./components/FormLogin";
 import { userLogout } from "./actions/actionUser";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Application extends Component {
 	render() {
-		console.log(this.props);
 		if (this.props.user.jwt)
 			return (
 				<div>
@@ -14,6 +14,7 @@ class Application extends Component {
 					<button onClick={() => this.props.dispatch(userLogout())}>
 						Log out
 					</button>
+					<Link to="/me">Mon Profil</Link>
 					<FilActu />
 				</div>
 			);

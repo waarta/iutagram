@@ -14,6 +14,10 @@ class FormLogin extends Component {
 		};
 	}
 
+	handleChange(event) {
+		event.preventDefault();
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 		this.props.dispatch(userLogin(this.login.value, this.password.value));
@@ -28,12 +32,14 @@ class FormLogin extends Component {
 						type="text"
 						name="login"
 						value="zprosacco"
+						onChange={this.handleChange}
 					/>
 					<input
 						ref={this.setPassword}
 						type="password"
 						name="password"
 						value="user"
+						onChange={this.handleChange}
 					/>
 					<input type="submit" value="Log in" />
 				</form>
