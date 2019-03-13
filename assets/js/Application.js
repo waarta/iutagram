@@ -6,9 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Application extends Component {
-	componentDidMount() {
-		this.props.dispatch(getInfosUser(this.props.user.jwt.payload.id));
-	}
+	componentDidMount() {}
 
 	render() {
 		if (this.props.user.jwt)

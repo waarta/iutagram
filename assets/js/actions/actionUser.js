@@ -58,9 +58,10 @@ export const getInfosUser = (id, jwt) => async dispatch => {
 				Authorization: "Bearer " + jwt
 			}
 		});
-		const payload = await res.json();
+		const json = await res.json();
+		console.log("----", json);
 
-		dispatch({ type: GET_INFOS_USER, payload });
+		dispatch({ type: GET_INFOS_USER, infosUser: json });
 	} catch (error) {
 		dispatch({ type: GET_INFOS_USER_ERROR, error });
 	}
