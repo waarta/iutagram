@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
+import Favorite from "@material-ui/icons/Favorite";
+import Commentaire from "./Commentaire";
 
 const customStyles = {
 	content: {
-		top: "10%",
-		left: "10%",
-		right: "10%",
-		bottom: "10%"
-		//position: "relative"
+		top: "15%",
+		left: "20%",
+		right: "20%",
+		bottom: "15%"
 	}
 };
 Modal.setAppElement("#app");
@@ -50,18 +51,13 @@ class Miniature extends Component {
 					{this.props.photo.user.username} - {date}
 				</p>
 				<p className="descriptionPhoto">{this.props.photo.description}</p>
-				<p>{this.props.photo.jaimes.length}</p>
+				<p>
+					{this.props.photo.jaimes.length} <Favorite fontSize="small" />
+				</p>
 				<div className="infosPhoto">
 					<img className="photo" src={this.props.photo.url} />
-					<div className="commentaires">
-						Commentaires{" "}
-						{this.props.photo.commentaires.map((c, i) => (
-							<p key={i}>
-								{c.user.username} : {c.texte} (
-								{c.date.split("+")[0].replace("T", " à ")})
-							</p>
-						))}
-					</div>
+
+					<Commentaire commentaires={this.props.photo.commentaires} />
 				</div>
 			</Modal>
 		) : (

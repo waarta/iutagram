@@ -12,11 +12,13 @@ class Application extends Component {
 		if (this.props.user.jwt)
 			return (
 				<div>
-					<h1>IUTagram</h1>
-					<button onClick={() => this.props.dispatch(userLogout())}>
-						Log out
-					</button>
-					<Link to="/me">Mon Profil</Link>
+					<div className="header">
+						<h1>IUTagram</h1>
+						<Link to="/me">Mon Profil</Link>
+						<button onClick={() => this.props.dispatch(userLogout())}>
+							Log out
+						</button>
+					</div>
 					<FilActu />
 				</div>
 			);

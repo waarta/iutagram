@@ -1,5 +1,7 @@
 body {
-	background-color: lightgray;
+	background-color: rgb(238, 236, 236);
+}
+.header {
 }
 .miniature {
 	margin: 10px;
@@ -8,6 +10,7 @@ body {
 }
 .photo {
 	width: 60%;
+	height: 60%;
 }
 .username {
 	font-weight: bold;
