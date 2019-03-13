@@ -6,3 +6,21 @@ body {
 	width: 30%;
 	height: 30%;
 }
+.photo {
+	width: 60%;
+}
+.username {
+	font-weight: bold;
+}
+.descriptionPhoto {
+	font-style: italic;
+}
+.infosPhoto {
+	position: relative;
+}
+.commentaires {
+	position: absolute;
+	width: 40%;
+	right: 0;
+	top: 0;
+}

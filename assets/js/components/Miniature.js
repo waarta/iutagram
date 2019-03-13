@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import Dialog from "@material-ui/core/Dialog";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 
 const customStyles = {
 	content: {
-		top: "15%",
-		left: "15%",
-		right: "auto",
-		bottom: "auto"
+		top: "10%",
+		left: "10%",
+		right: "10%",
+		bottom: "10%"
+		//position: "relative"
 	}
 };
 Modal.setAppElement("#app");
@@ -38,6 +37,7 @@ class Miniature extends Component {
 	}
 
 	render() {
+		let date = this.props.photo.date.split("+")[0].replace("T", " à ");
 		return this.state.modalIsOpen ? (
 			<Modal
 				isOpen={this.state.modalIsOpen}
@@ -46,7 +46,23 @@ class Miniature extends Component {
 				style={customStyles}
 				contentLabel="Photo"
 			>
-				<img className="" src={this.props.photo.url} />
+				<p className="username">
+					{this.props.photo.user.username} - {date}
+				</p>
+				<p className="descriptionPhoto">{this.props.photo.description}</p>
+				<p>{this.props.photo.jaimes.length}</p>
+				<div className="infosPhoto">
+					<img className="photo" src={this.props.photo.url} />
+					<div className="commentaires">
+						Commentaires{" "}
+						{this.props.photo.commentaires.map((c, i) => (
+							<p key={i}>
+								{c.user.username} : {c.texte} (
+								{c.date.split("+")[0].replace("T", " à ")})
+							</p>
+						))}
+					</div>
+				</div>
 			</Modal>
 		) : (
 			<img
