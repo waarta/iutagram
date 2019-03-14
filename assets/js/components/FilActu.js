@@ -11,7 +11,7 @@ class FilActu extends Component {
 	render() {
 		if (this.props.photos.photos[0] != undefined)
 			return (
-				<div>
+				<div className="filActu">
 					{this.props.photos.photos[0].map((photo, i) => (
 						<Miniature key={i} photo={photo} />
 					))}

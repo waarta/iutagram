@@ -1,11 +1,11 @@
-body {
-	background-color: rgb(238, 236, 236);
+.filActu {
+	text-align: center;
 }
 .header {
 	text-align: center;
+	background-color: rgb(196, 196, 196);
 }
 h1 {
-	display: inline-block;
 	float: left;
 	vertical-align: middle;
 	margin: 0;

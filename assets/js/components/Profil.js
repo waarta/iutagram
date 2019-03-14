@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getInfosUser } from "../actions/actionUser";
+import Home from "@material-ui/icons/Home";
 
 class Profil extends Component {
 	componentDidMount() {
@@ -17,7 +18,9 @@ class Profil extends Component {
 		console.log("USER", this.props.user);
 		return (
 			<div>
-				<Link to="/">Home</Link>
+				<Link to="/">
+					<Home fontSize="large" />
+				</Link>
 				<h2>Profil</h2>
 				<p> {this.props.user.infosUser.username}</p>
 				<p>
