@@ -2,6 +2,22 @@ body {
 	background-color: rgb(238, 236, 236);
 }
 .header {
+	text-align: center;
+}
+h1 {
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+	margin: 0;
+}
+.iconeProfil {
+	margin-left: auto;
+	vertical-align: middle;
+}
+.logout {
+	float: right;
+
+	vertical-align: middle;
 }
 .miniature {
 	margin: 10px;
