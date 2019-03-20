@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Commentaire from "./Commentaire";
+import { likePhoto } from "../actions/actionJaime";
 
 const customStyles = {
 	content: {
@@ -17,6 +19,7 @@ Modal.setAppElement("#app");
 class Photo extends Component {
 	render() {
 		let date = this.props.photo.date.split("+")[0].replace("T", " à ");
+
 		return (
 			<Modal
 				isOpen={this.props.modalIsOpen}
@@ -30,7 +33,20 @@ class Photo extends Component {
 				</p>
 				<p className="descriptionPhoto">{this.props.photo.description}</p>
 				<p>
-					{this.props.photo.jaimes.length} <Favorite fontSize="small" />
+					{this.props.photo.jaimes.length}{" "}
+					<FavoriteBorder
+						fontSize="small"
+						onClick={() =>
+							this.props.dispatch(
+								likePhoto(
+									this.props.user.jwt.rawToken,
+									this.props.photo.id,
+									this.props.user.jwt.payload.id,
+									true
+								)
+							)
+						}
+					/>
 				</p>
 				<div className="infosPhoto">
 					<img className="photo" src={this.props.photo.url} />
@@ -41,5 +57,7 @@ class Photo extends Component {
 		);
 	}
 }
-
-export default connect()(Photo);
+const mapStateToProps = state => ({
+	user: state.user
+});
+export default connect(mapStateToProps)(Photo);
