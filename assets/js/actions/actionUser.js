@@ -14,7 +14,7 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
 export const userLogin = (username, password) => async dispatch => {
 	try {
-		const res = await fetch("http://127.0.0.1:8000/api/login_check", {
+		const res = await fetch("/api/login_check", {
 			method: "POST",
 			body: JSON.stringify({ username, password }),
 			headers: {
