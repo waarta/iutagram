@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Entity(Table(name="iutagram_user"))
+ * @ORM\Table(name="iutagram_user")
  */
 class User implements UserInterface
 {
