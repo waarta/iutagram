@@ -1,16 +1,18 @@
-import { LIKE_PHOTO } from "../actions/actionJaime";
+import { LIKE_PHOTO, GET_JAIME } from "../actions/actionJaime";
 
 const initialState = {
-	jaime: []
+	jaimes: []
 };
 
-const jaime = (state = initialState, action) => {
+const jaimes = (state = initialState, action) => {
 	switch (action.type) {
+		case GET_JAIME:
+			return { ...state, jaimes: [...state.jaimes, action.jaimes] };
 		case LIKE_PHOTO:
-			return { ...state, jaime: [...state.jaime, action.jaime] };
+			return { ...state, jaimes: [...state.jaimes, action.jaimes] };
 		default:
 			return state;
 	}
 };
 
-export default jaime;
+export default jaimes;

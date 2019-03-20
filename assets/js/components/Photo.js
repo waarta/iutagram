@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Commentaire from "./Commentaire";
-import { likePhoto } from "../actions/actionJaime";
+import { likePhoto, getJaimes } from "../actions/actionJaime";
 
 const customStyles = {
 	content: {
@@ -17,6 +17,11 @@ const customStyles = {
 Modal.setAppElement("#app");
 
 class Photo extends Component {
+	componentDidMount() {
+		this.props.dispatch(
+			getJaimes(this.props.user.jwt.rawToken, this.props.photo.id)
+		);
+	}
 	render() {
 		let date = this.props.photo.date.split("+")[0].replace("T", " à ");
 
@@ -33,7 +38,7 @@ class Photo extends Component {
 				</p>
 				<p className="descriptionPhoto">{this.props.photo.description}</p>
 				<p>
-					{this.props.photo.jaimes.length}{" "}
+					{this.props.jaimes.jaimes.length}
 					<FavoriteBorder
 						fontSize="small"
 						onClick={() =>
@@ -58,6 +63,7 @@ class Photo extends Component {
 	}
 }
 const mapStateToProps = state => ({
-	user: state.user
+	user: state.user,
+	jaimes: state.jaimes
 });
 export default connect(mapStateToProps)(Photo);

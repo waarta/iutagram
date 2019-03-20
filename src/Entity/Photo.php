@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -56,6 +57,7 @@ class Photo
     private $commentaires;
 
     /**
+     * @ApiSubresource(maxDepth=1)
      * @Groups({"get_photo","get_user"})
      * @ORM\OneToMany(targetEntity="App\Entity\Jaime", mappedBy="photo", orphanRemoval=true)
      */

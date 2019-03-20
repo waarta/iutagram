@@ -6,5 +6,5 @@ import reducerJaime from "./reducerJaime";
 export default combineReducers({
 	photos: reducerPhoto,
 	user: reducerUser,
-	jaime: reducerJaime
+	jaimes: reducerJaime
 });
